@@ -99,13 +99,18 @@ class MergeInsertSort {
   }
 
   public print(): void {
-    this.a.forEach((item) => console.info(item));
+    this.a.forEach((item, i) => {
+      if (this.a[i - 1] > this.a[i]) {
+        console.info('FAILED');
+      }
+      console.info(item);
+    });
   }
 }
 
-const sort = new MergeInsertSort(1024 * 1024);
+const sort = new MergeInsertSort(64);
 const start = process.hrtime();
 sort.imSort(0, sort.a.length);
 const end = process.hrtime(start);
 sort.print();
-console.info('Execution time (hr): %ds %dms', end[0], end[1] / 1000000);
+console.info('Execution time: %dms', end[1] / 1000000);
