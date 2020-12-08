@@ -1,4 +1,4 @@
-export class LomutoQuickSort {
+export class HoareQuickSort {
   public array: Array<number>;
   private length: number;
   private sorted: boolean = false;
@@ -36,25 +36,30 @@ export class LomutoQuickSort {
   }
 
   private partition(lowIndex: number, highIndex: number): number {
-    const pivot = this.array[highIndex];
+    const pivot = this.array[lowIndex];
 
     let smallerIndex = lowIndex - 1;
+    let greaterIndex = highIndex + 1;
 
-    for (let j = lowIndex; j <= highIndex - 1; j++) {
-      if (this.array[j] <= pivot) {
+    while (true) {
+      do {
         smallerIndex++;
-        this.swap(smallerIndex, j);
-      }
-    }
+      } while (this.array[smallerIndex] < pivot);
 
-    this.swap(smallerIndex + 1, highIndex);
-    return smallerIndex + 1;
+      do {
+        greaterIndex--;
+      } while (this.array[greaterIndex] > pivot);
+
+      if (smallerIndex >= greaterIndex) return greaterIndex;
+
+      this.swap(smallerIndex, greaterIndex);
+    }
   }
 
   private quickSort(low: number, high: number) {
     if (low < high) {
       const partitionIndex = this.partition(low, high);
-      this.quickSort(low, partitionIndex - 1);
+      this.quickSort(low, partitionIndex);
       this.quickSort(partitionIndex + 1, high);
     }
   }
