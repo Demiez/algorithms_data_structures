@@ -5,6 +5,7 @@
   "rules": {
     "array-type": [true, "generic"],
     "no-string-literal": false,
+    "no-shadowed-variable": false,
     "object-literal-shorthand": [true, "never"],
     "only-arrow-functions": true,
     "interface-name": false,
