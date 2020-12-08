@@ -1,26 +1,31 @@
 export class LomutoQuickSort {
   public array: Array<number>;
+  private length: number;
   private sorted: boolean = false;
 
   constructor(arr: Array<number>) {
     this.array = arr;
+    this.length = arr.length;
   }
 
   public sort(): void {
-    if (this.array.length <= 2) {
-      this.checkArray(this.array);
-      this.sorted = true;
-    }
+    this.checkArray();
 
     if (!this.sorted) {
       console.info('...performing Lomuto sorting');
     }
   }
 
-  private checkArray(arr: Array<number>) {
-    if (arr.length < 2) return arr;
-    if (arr.length === 2 && arr[0] > arr[1]) return this.swap(0, 1);
-    return arr;
+  private checkArray(): void {
+    if (this.length < 2) {
+      this.sorted = true;
+      return;
+    }
+    if (this.length === 2 && this.array[0] > this.array[1]) {
+      this.swap(0, 1);
+      this.sorted = true;
+    }
+    return;
   }
 
   private swap(position1: number, position2: number) {
