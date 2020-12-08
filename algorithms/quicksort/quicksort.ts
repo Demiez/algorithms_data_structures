@@ -2,15 +2,19 @@ import { SimpleQuickSort } from './simple_quicksort';
 import { LomutoQuickSort } from './lomuto_quicksort';
 import * as utils from './utils';
 
-const lomutoSort = new LomutoQuickSort([2, 0, 1]);
+const array = utils.fillArray(1024 * 1024);
+const lomutoSort = new LomutoQuickSort(array);
+
+const startLomuto = process.hrtime();
 lomutoSort.sort();
-utils.displayArray(lomutoSort.array);
+const endLomuto = process.hrtime(startLomuto);
 
-const array = utils.fillArray(10);
+const startRandomPivot = process.hrtime();
+const sortedWithRandomPivotArray = SimpleQuickSort.sort(array);
+const endRandomPivot = process.hrtime(startRandomPivot);
 
-const start = process.hrtime();
-const sortedArray = SimpleQuickSort.sort(array);
-const end = process.hrtime(start);
-
-utils.displayArray(sortedArray);
-utils.displayExecTime(end);
+// utils.displayArray(sortedWithRandomPivotArray);
+// utils.displayArray(lomutoSort.array);
+console.info(`Number of elements: ${array.length}`);
+utils.displayExecTime(endLomuto, `lomuto partition`);
+utils.displayExecTime(endRandomPivot, 'random partition');

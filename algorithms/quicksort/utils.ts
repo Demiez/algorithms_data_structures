@@ -4,5 +4,8 @@ export const fillArray = (size: number): Array<number> =>
 export const displayArray = (arr: Array<number>): void =>
   console.log(arr.join());
 
-export const displayExecTime = (time: Array<number>): void =>
-  console.info('Execution time: %dms', time[1] / 1000000);
+export const displayExecTime = (
+  time: Array<number>,
+  sortingName: string = ''
+): void =>
+  console.info('Execution time %s: %dms', sortingName, time[1] / 1000000);
