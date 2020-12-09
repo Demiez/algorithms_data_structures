@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Launch Program",
       "runtimeArgs": ["-r", "ts-node/register"],
-      "args": ["${workspaceFolder}/algorithms/quicksort/quicksort.ts"]
+      "args": ["${workspaceFolder}/algorithms/quicksort/main.ts"]
     }
   ]
 }

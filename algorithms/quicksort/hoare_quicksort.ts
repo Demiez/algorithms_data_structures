@@ -56,6 +56,7 @@ export class HoareQuickSort {
     }
   }
 
+  // Possible RangeError: Maximum call stack size exceeded
   private quickSort(low: number, high: number) {
     if (low < high) {
       const partitionIndex = this.partition(low, high);

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "binary": "ts-node algorithms/binary.ts"
+    "quicksort": "node -r ts-node/register algorithms/quicksort/main.ts"
   },
   "keywords": [],
   "author": "",

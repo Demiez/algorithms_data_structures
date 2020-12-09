@@ -3,7 +3,7 @@ import { LomutoQuickSort } from './lomuto_quicksort';
 import { HoareQuickSort } from './hoare_quicksort';
 import * as utils from './utils';
 
-const array = utils.fillArray(100 * 100);
+const array = utils.fillArray(1000);
 const lomutoSort = new LomutoQuickSort(array);
 const hoareSort = new HoareQuickSort(array);
 
