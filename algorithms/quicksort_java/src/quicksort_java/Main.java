@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-	    int size = 1000;
+	    int size = 100000000;
         int[] array01 = new int[size];
         fillArray(array01);
         int[] array02 = array01.clone();
@@ -27,8 +27,8 @@ public class Main {
 
         System.out.printf("Number of elements: \t %d \n", size);
 
-        LomutoQuicksort.printArray(array01, size);
-        HoareQuicksort.printArray(array01, size);
+        // LomutoQuicksort.printArray(array01, size);
+        // HoareQuicksort.printArray(array01, size);
 
         System.out.printf("Execution Time Lomuto: \t %.2f ms \n", (stopTimeLomuto - startTimeLomuto) / 1000000);
         System.out.printf("Execution Time Hoare: \t %.2f ms \n", (stopTimeHoare - startTimeHoare) / 1000000);
