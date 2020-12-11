@@ -8,17 +8,29 @@ export class GraphAL {
     this.adjList = new Map();
   }
 
-  public addVertex(v: number) {
+  private addVertex(v: number) {
     this.adjList.set(v, [] as number[]);
   }
 
   public addVertices(arr: number[]) {
-    arr.forEach((vertex) => this.adjList.set(vertex, [] as number[]));
+    if (this.noOfVertices !== arr.length) {
+      throw new Error('Wrong number of vertices');
+    }
+
+    arr.forEach((vertex) => this.addVertex(vertex));
   }
 
   public addEdge(v: number, w: number) {
-    this.adjList.get(v).push(w);
+    const listofVeticesV = this.adjList.get(v) as number[];
+    listofVeticesV.push(w);
 
-    this.adjList.get(w).push(v);
+    const listofVeticesW = this.adjList.get(w) as number[];
+    listofVeticesW.push(v);
+  }
+
+  public printGraph(): void {
+    for (const [key, value] of this.adjList) {
+      console.info(key, value.sort().join(','));
+    }
   }
 }
