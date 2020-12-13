@@ -17,7 +17,7 @@ export class Queue {
     return this.elements.length;
   }
 
-  private isEmpty(): boolean {
+  public isEmpty(): boolean {
     return this.elements.length === 0;
   }
 }

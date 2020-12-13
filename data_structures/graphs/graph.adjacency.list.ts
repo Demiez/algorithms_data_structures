@@ -1,4 +1,6 @@
 // Graph adjacency list
+import { Queue } from '../queue/queue';
+
 export class GraphAL {
   private noOfVertices: number;
   private adjList: Map<number, number[]>;
@@ -32,5 +34,44 @@ export class GraphAL {
     for (const [key, value] of this.adjList) {
       console.info(key, value.sort().join(','));
     }
+  }
+
+  public bfs(startingVertex: number) {
+    const queue = new Queue();
+    const visited: number[] = [];
+
+    visited.push(startingVertex);
+    queue.enqueue(startingVertex);
+
+    while (!queue.isEmpty) {
+      const elementFromQueue = queue.dequeue();
+
+      console.info('Visited vertex:' + elementFromQueue);
+
+      const adjacentListForElement: number[] = this.adjList.get(
+        elementFromQueue as number
+      );
+
+      adjacentListForElement.forEach((vertex) => {
+        const neighbourVertex = adjacentListForElement[vertex];
+
+        if (!visited.includes(neighbourVertex)) {
+          visited.push(neighbourVertex);
+
+          queue.enqueue(vertex);
+        }
+      });
+    }
+
+    if (visited.length === this.noOfVertices) {
+      console.info(
+        'ALL vertices visited in graph in order > ' + visited.join(',')
+      );
+      return;
+    }
+
+    console.info(
+      'Some vertices visited in graph in order > ' + visited.join(',')
+    );
   }
 }

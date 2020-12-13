@@ -11,3 +11,4 @@ graph01.addEdge(3, 4); // f
 graph01.addEdge(1, 4); // g
 
 graph01.printGraph();
+graph01.bfs(3);
