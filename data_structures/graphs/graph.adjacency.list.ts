@@ -88,15 +88,18 @@ export class GraphAL {
 
     const traverse = (vertex: number) => {
       visited.push(vertex);
-      console.info('Visited vertex: ' + vertex);
 
       const adjacentListForElement: number[] = this.adjList.get(vertex)!;
 
-      for (const vertex of adjacentListForElement) {
-        if (!visited.includes(vertex)) {
-          traverse(vertex);
+      if (adjacentListForElement.length !== 0) {
+        for (const vertex of adjacentListForElement) {
+          if (!visited.includes(vertex)) {
+            traverse(vertex);
+          }
         }
       }
+
+      console.info('Visited vertex: ' + vertex);
     };
 
     traverse(startingVertex);
