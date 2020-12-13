@@ -12,3 +12,4 @@ graph01.addEdge(1, 4); // g
 
 graph01.printGraph();
 graph01.bfs(5);
+graph01.dfs(5);

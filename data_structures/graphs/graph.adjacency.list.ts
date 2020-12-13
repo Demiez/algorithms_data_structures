@@ -14,6 +14,23 @@ export class GraphAL {
     this.adjList.set(v, [] as number[]);
   }
 
+  private printTraverseInfo(visited: number[], traverseType: string) {
+    if (visited.length === this.noOfVertices) {
+      console.info(
+        `${traverseType.toUpperCase()}: ALL vertices visited in graph in order >  ${visited.join(
+          ','
+        )}`
+      );
+      return;
+    }
+
+    console.info(
+      `${traverseType.toUpperCase()}: SOME vertices visited in graph in order >  ${visited.join(
+        ','
+      )}`
+    );
+  }
+
   public addVertices(arr: number[]) {
     if (this.noOfVertices !== arr.length) {
       throw new Error('Wrong number of vertices');
@@ -63,15 +80,27 @@ export class GraphAL {
       }
     }
 
-    if (visited.length === this.noOfVertices) {
-      console.info(
-        'ALL vertices visited in graph in order > ' + visited.join(',')
-      );
-      return;
-    }
+    this.printTraverseInfo(visited, 'bfs');
+  }
 
-    console.info(
-      'Some vertices visited in graph in order > ' + visited.join(',')
-    );
+  dfs(startingVertex: number) {
+    const visited: number[] = [];
+
+    const traverse = (vertex: number) => {
+      visited.push(vertex);
+      console.info('Visited vertex: ' + vertex);
+
+      const adjacentListForElement: number[] = this.adjList.get(vertex)!;
+
+      for (const vertex of adjacentListForElement) {
+        if (!visited.includes(vertex)) {
+          traverse(vertex);
+        }
+      }
+    };
+
+    traverse(startingVertex);
+
+    this.printTraverseInfo(visited, 'dfs');
   }
 }
