@@ -40,13 +40,17 @@ export class GraphAL {
     const queue = new Queue();
     const visited: number[] = [];
 
-    visited.push(startingVertex);
     queue.enqueue(startingVertex);
 
     while (!queue.isEmpty()) {
       const elementFromQueue = queue.dequeue();
 
+      if (visited.includes(elementFromQueue as number)) {
+        continue;
+      }
+
       console.info('Visited vertex: ' + elementFromQueue);
+      visited.push(elementFromQueue as number);
 
       const adjacentListForElement: number[] = this.adjList.get(
         elementFromQueue as number
@@ -54,8 +58,6 @@ export class GraphAL {
 
       for (const vertex of adjacentListForElement) {
         if (!visited.includes(vertex)) {
-          visited.push(vertex);
-
           queue.enqueue(vertex);
         }
       }
