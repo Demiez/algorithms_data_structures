@@ -43,24 +43,22 @@ export class GraphAL {
     visited.push(startingVertex);
     queue.enqueue(startingVertex);
 
-    while (!queue.isEmpty) {
+    while (!queue.isEmpty()) {
       const elementFromQueue = queue.dequeue();
 
-      console.info('Visited vertex:' + elementFromQueue);
+      console.info('Visited vertex: ' + elementFromQueue);
 
       const adjacentListForElement: number[] = this.adjList.get(
         elementFromQueue as number
-      );
+      )!;
 
-      adjacentListForElement.forEach((vertex) => {
-        const neighbourVertex = adjacentListForElement[vertex];
-
-        if (!visited.includes(neighbourVertex)) {
-          visited.push(neighbourVertex);
+      for (const vertex of adjacentListForElement) {
+        if (!visited.includes(vertex)) {
+          visited.push(vertex);
 
           queue.enqueue(vertex);
         }
-      });
+      }
     }
 
     if (visited.length === this.noOfVertices) {

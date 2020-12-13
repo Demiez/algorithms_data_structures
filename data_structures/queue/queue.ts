@@ -5,7 +5,7 @@ export class Queue {
     this.elements.push(el);
   }
 
-  public dequeue(): number | string {
+  public dequeue(): number | string | undefined {
     return this.elements.shift();
   }
 
