@@ -83,7 +83,7 @@ export class GraphAL {
     this.printTraverseInfo(visited, 'bfs');
   }
 
-  dfs(startingVertex: number) {
+  public dfs(startingVertex: number) {
     const visited: number[] = [];
 
     const traverse = (vertex: number) => {
