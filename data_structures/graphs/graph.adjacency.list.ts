@@ -87,6 +87,7 @@ export class GraphAL<T> {
     const visited: T[] = [];
 
     const traverse = (vertex: T) => {
+      console.info('Visited vertex: ' + vertex);
       visited.push(vertex);
 
       const adjacentListForElement: T[] = this.adjList.get(vertex)!;
@@ -98,12 +99,10 @@ export class GraphAL<T> {
           }
         }
       }
-
-      console.info('Visited vertex: ' + vertex);
     };
 
     traverse(startingVertex);
 
-    this.printTraverseInfo(visited.reverse(), 'dfs');
+    this.printTraverseInfo(visited, 'dfs');
   }
 }
