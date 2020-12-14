@@ -1,20 +1,20 @@
 // Graph adjacency list
 import { Queue } from '../queue/queue';
 
-export class GraphAL {
+export class GraphAL<T> {
   private noOfVertices: number;
-  private adjList: Map<number, number[]>;
+  private adjList: Map<T, T[]>;
 
   constructor(noOfVertices: number) {
     this.noOfVertices = noOfVertices;
     this.adjList = new Map();
   }
 
-  private addVertex(v: number) {
-    this.adjList.set(v, [] as number[]);
+  private addVertex(v: T) {
+    this.adjList.set(v, [] as T[]);
   }
 
-  private printTraverseInfo(visited: number[], traverseType: string) {
+  private printTraverseInfo(visited: T[], traverseType: string) {
     if (visited.length === this.noOfVertices) {
       console.info(
         `${traverseType.toUpperCase()}: ALL vertices visited in graph in order >  ${visited.join(
@@ -31,7 +31,7 @@ export class GraphAL {
     );
   }
 
-  public addVertices(arr: number[]) {
+  public addVertices(arr: T[]) {
     if (this.noOfVertices !== arr.length) {
       throw new Error('Wrong number of vertices');
     }
@@ -39,11 +39,11 @@ export class GraphAL {
     arr.forEach((vertex) => this.addVertex(vertex));
   }
 
-  public addEdge(v: number, w: number) {
-    const listofVeticesV = this.adjList.get(v) as number[];
+  public addEdge(v: T, w: T) {
+    const listofVeticesV = this.adjList.get(v) as Array<T>;
     listofVeticesV.push(w);
 
-    const listofVeticesW = this.adjList.get(w) as number[];
+    const listofVeticesW = this.adjList.get(w) as Array<T>;
     listofVeticesW.push(v);
   }
 
@@ -53,24 +53,24 @@ export class GraphAL {
     }
   }
 
-  public bfs(startingVertex: number) {
-    const queue = new Queue();
-    const visited: number[] = [];
+  public bfs(startingVertex: T) {
+    const queue = new Queue<T>();
+    const visited: T[] = [];
 
     queue.enqueue(startingVertex);
 
     while (!queue.isEmpty()) {
       const elementFromQueue = queue.dequeue();
 
-      if (visited.includes(elementFromQueue as number)) {
+      if (visited.includes(elementFromQueue as T)) {
         continue;
       }
 
       console.info('Visited vertex: ' + elementFromQueue);
-      visited.push(elementFromQueue as number);
+      visited.push(elementFromQueue as T);
 
-      const adjacentListForElement: number[] = this.adjList.get(
-        elementFromQueue as number
+      const adjacentListForElement: T[] = this.adjList.get(
+        elementFromQueue as T
       )!;
 
       for (const vertex of adjacentListForElement) {
@@ -83,13 +83,13 @@ export class GraphAL {
     this.printTraverseInfo(visited, 'bfs');
   }
 
-  public dfs(startingVertex: number) {
-    const visited: number[] = [];
+  public dfs(startingVertex: T) {
+    const visited: T[] = [];
 
-    const traverse = (vertex: number) => {
+    const traverse = (vertex: T) => {
       visited.push(vertex);
 
-      const adjacentListForElement: number[] = this.adjList.get(vertex)!;
+      const adjacentListForElement: T[] = this.adjList.get(vertex)!;
 
       if (adjacentListForElement.length !== 0) {
         for (const vertex of adjacentListForElement) {

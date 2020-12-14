@@ -1,15 +1,15 @@
-export class Queue {
-  private elements: Array<number | string> = [];
+export class Queue<T> {
+  private elements: Array<T> = [];
 
-  public enqueue(el: number | string): void {
+  public enqueue(el: T): void {
     this.elements.push(el);
   }
 
-  public dequeue(): number | string | undefined {
+  public dequeue(): T | undefined {
     return this.elements.shift();
   }
 
-  public peek(): number | string | undefined {
+  public peek(): T | undefined {
     return !this.isEmpty ? this.elements[0] : undefined;
   }
 
