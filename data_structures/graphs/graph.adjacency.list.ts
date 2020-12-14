@@ -103,6 +103,6 @@ export class GraphAL<T> {
 
     traverse(startingVertex);
 
-    this.printTraverseInfo(visited, 'dfs');
+    this.printTraverseInfo(visited.reverse(), 'dfs');
   }
 }
