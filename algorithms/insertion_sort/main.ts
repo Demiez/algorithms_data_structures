@@ -1,15 +1,18 @@
 import { InsertionSort } from './insertion.sort';
-import { displayExecTime } from '../../utils/utils';
+import { fillArray, displayExecTime } from '../../utils/utils';
 
-const arraySize = 100;
+const array = fillArray(8500);
 
-const array01 = new InsertionSort(arraySize);
-const array02 = new InsertionSort(arraySize);
+const array01 = new InsertionSort(array);
+const array02 = new InsertionSort(array);
 
-// const startTime = process.hrtime();
-// array01.sort();
-// const endTime = process.hrtime(startTime);
-// displayExecTime(endTime, 'Insertion Sort');
+const startTimeNonRecursive = process.hrtime();
+array01.sort();
+const endTimeNonRecursive = process.hrtime(startTimeNonRecursive);
+displayExecTime(endTimeNonRecursive, 'Insertion Sort - Non Recursive');
 
+const startTimeRecursive = process.hrtime();
 array02.sortRecursive();
-array02.printArray();
+const endTimeRecursive = process.hrtime(startTimeRecursive);
+// array02.printArray();
+displayExecTime(endTimeRecursive, 'Insertion Sort - Recursive');

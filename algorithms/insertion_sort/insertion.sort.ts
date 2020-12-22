@@ -1,8 +1,8 @@
 import { Basic } from '../basic.class';
 
 export class InsertionSort extends Basic {
-  constructor(size: number) {
-    super(size);
+  constructor(arr: Array<number>) {
+    super(arr);
   }
 
   sort() {
