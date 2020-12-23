@@ -39,7 +39,7 @@ export class InsertionSort extends Basic {
     if (n <= 1) return;
     this.numberOfRecursions++;
 
-    this.numberOfRecursions % 1000 === 0
+    this.numberOfRecursions % 5000 === 0
       ? setImmediate(() => {
           this.sortRecursive(arr, n - 1);
         })

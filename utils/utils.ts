@@ -8,4 +8,8 @@ export const displayExecTime = (
   time: Array<number>,
   sortingName: string = ''
 ): void =>
-  console.info('Execution time %s: %dms', sortingName, time[1] / 1000000);
+  console.info(
+    'Execution time %s: %dms',
+    sortingName,
+    +(time[1] / 1000000).toFixed(2)
+  );
