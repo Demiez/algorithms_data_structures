@@ -40,10 +40,16 @@ export class InsertionSort extends Basic {
     this.numberOfRecursions++;
 
     this.numberOfRecursions % 5000 === 0
-      ? setImmediate(() => {
+      ? process.nextTick(() => {
           this.sortRecursive(arr, n - 1);
         })
       : this.sortRecursive(arr, n - 1);
+
+    // this.numberOfRecursions % 5000 === 0
+    //   ? setImmediate(() => {
+    //       this.sortRecursive(arr, n - 1);
+    //     })
+    //   : this.sortRecursive(arr, n - 1);
 
     // if (this.numberOfRecursions % 1000 === 0) {
     //   setImmediate(() => {
